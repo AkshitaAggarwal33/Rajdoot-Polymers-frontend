@@ -13,43 +13,41 @@ function App() {
   const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
-  const registered = localStorage.getItem("registered");
+    const registered = localStorage.getItem("registered");
 
-  if (!registered) {
-    setTimeout(() => {
-      setShowPopup(true);
-    }, 2000);
-  } else {
-    setShowPopup(false);   
-  }
-}, []);
+    if (!registered) {
+      setTimeout(() => {
+        setShowPopup(true);
+      }, 2000);
+    }
+  }, []);
 
   return (
     <div className="bg-black text-white">
-      <div className={showPopup ? "blur-bg" : ""}>
-        <Navbar />
+      {/* ❌ Removed blur wrapper */}
+      <Navbar />
 
-        <Hero />
+      <Hero />
 
-        {/* About Section */}
-        <About />
+      {/* About Section */}
+      <About />
 
-        {/* Product Catalogue */}
-        <Products />
+      {/* Product Catalogue */}
+      <Products />
 
-        {/* Factory Gallery */}
-        <Gallery />
+      {/* Factory Gallery */}
+      <Gallery />
 
-        {/* Youtube Section  */}
-        <YoutubeSection />
+      {/* Youtube Section */}
+      <YoutubeSection />
 
-        {/* Contact Section */}
-        <Contact />
+      {/* Contact Section */}
+      <Contact />
 
-        {/* Footer Section  */}
-        <Footer />
-      </div>
+      {/* Footer Section */}
+      <Footer />
 
+      {/* Popup */}
       <RegisterPopup showPopup={showPopup} setShowPopup={setShowPopup} />
     </div>
   );
