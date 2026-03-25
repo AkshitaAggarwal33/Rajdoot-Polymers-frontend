@@ -15,7 +15,8 @@ export default function LoginPopup({ closePopup, openRegister }) {
 
   const handleLogin = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/users/login", {
+      const BASE_URL = "https://rajdoot-polymers-backend.onrender.com"
+      const res = await fetch(`${BASE_URL}/api/users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -23,9 +23,15 @@ export default function RegisterPopup() {
   }, []);
 
   const registerUser = async () => {
+    const BASE_URL = "https://rajdoot-polymers-backend.onrender.com"
     const res = await axios.post(
-      "http://localhost:5000/api/users/register",
+      `${BASE_URL}/api/users/register`,
       form,
+      {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }
     );
 
     if (res.data.registered) {
@@ -37,7 +43,8 @@ export default function RegisterPopup() {
   };
 
   const verifyUser = async () => {
-    const res = await axios.post("http://localhost:5000/api/users/verify", {
+    const BASE_URL = "https://rajdoot-polymers-backend.onrender.com"
+    const res = await axios.post(`${BASE_URL}/api/users/verify`, {
       mobile: verifyMobile,
     });
 
