@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function RegisterPopup() {
-  const [show, setShow] = useState(false);
+export default function RegisterPopup({ showPopup, setShowPopup }) {
+  // const [show, setShow] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
 
   const [form, setForm] = useState({
@@ -13,14 +13,14 @@ export default function RegisterPopup() {
 
   const [verifyMobile, setVerifyMobile] = useState("");
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShow(true);
-      document.body.style.overflow = "hidden";
-    }, 5000);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setShow(true);
+  //     document.body.style.overflow = "hidden";
+  //   }, 5000);
 
-    return () => clearTimeout(timer);
-  }, []);
+  //   return () => clearTimeout(timer);
+  // }, []);
 
   const registerUser = async () => {
     const BASE_URL = "https://rajdoot-polymers-backend.onrender.com"
@@ -35,11 +35,11 @@ export default function RegisterPopup() {
     );
 
     if (res.data.registered) {
-      alert("Registration Successful");
+  alert("Registration Successful");
 
-      setShow(false);
-      document.body.style.overflow = "auto";
-    }
+  localStorage.setItem("registered", "true")
+  setShowPopup(false)
+}
   };
 
   const verifyUser = async () => {
@@ -49,16 +49,16 @@ export default function RegisterPopup() {
     });
 
     if (res.data.registered) {
-      alert("Welcome back!");
+  alert("Welcome back!");
 
-      setShow(false);
-      document.body.style.overflow = "auto";
-    } else {
+  localStorage.setItem("registered", "true")
+  setShowPopup(false)
+} else {
       alert("User not registered");
     }
   };
 
-  if (!show) return null;
+  if (!showPopup) return null;
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/60 backdrop-blur-md z-50">

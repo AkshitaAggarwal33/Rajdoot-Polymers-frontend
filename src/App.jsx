@@ -13,14 +13,16 @@ function App() {
   const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
-    const registered = localStorage.getItem("registered");
+  const registered = localStorage.getItem("registered");
 
-    if (!registered) {
-      setTimeout(() => {
-        setShowPopup(true);
-      }, 2000);
-    }
-  }, []);
+  if (!registered) {
+    setTimeout(() => {
+      setShowPopup(true);
+    }, 2000);
+  } else {
+    setShowPopup(false);   
+  }
+}, []);
 
   return (
     <div className="bg-black text-white">

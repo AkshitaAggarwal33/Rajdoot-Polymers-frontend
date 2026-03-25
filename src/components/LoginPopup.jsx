@@ -27,15 +27,15 @@ export default function LoginPopup({ closePopup, openRegister }) {
       const data = await res.json();
 
       if (res.ok) {
-        // store user
-        localStorage.setItem("user", JSON.stringify(data.user));
+  localStorage.setItem("user", JSON.stringify(data.user));
 
-        alert("Login Successful");
-        // setUser(data.user)
+  // 🔥 IMPORTANT
+  localStorage.setItem("registered", "true");
 
-        // close popup
-        closePopup();
-      } else {
+  alert("Login Successful");
+
+  closePopup(); // 🔥 THIS will remove blur
+} else {
         alert(data.msg || "Login Failed");
       }
     } catch (err) {
