@@ -38,7 +38,9 @@ export default function RegisterPopup({ showPopup, setShowPopup }) {
 
     const res = await axios.post(`${BASE_URL}/api/users/verify`, {
       mobile: verifyMobile,
-    });
+    },
+    { timeout: 60000 }
+  );
 
     if (res.data.registered) {
       alert("Welcome back!");
